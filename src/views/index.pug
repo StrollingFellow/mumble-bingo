@@ -1,0 +1,26 @@
+head
+	title Animumble Bingo
+	style!=styles
+	script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+	<link href="https://fonts.googleapis.com/css?family=Amatic+SC:700|Nunito|Caveat+Brush" rel="stylesheet">
+	
+
+.main-content
+	.title 
+		span 
+			| Animumble Bingo
+		span  Animumble Bingo
+	.bingo-card
+		each val, index in squares
+			.bingo-card__item= val
+				span.bingo-card__checkbox
+
+aside.context
+	.clear-button Clear board
+	.explanation
+		| Part of the 
+		a(href="https://codepen.io/collection/DQvYpQ" target="_blank") CSS Grid collection here
+		| .
+
+script
+	include script.js
