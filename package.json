@@ -7,7 +7,9 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "mongodb": "^3.6.3"
+    "mongodb": "^3.6.3",
+    "pug": "^3.0.0",
+    "sass": "^1.32.5"
   },
   "devDependencies": {
     "@types/mongodb": "^3.6.3"

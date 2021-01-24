@@ -29,15 +29,9 @@ module.exports = async function (context, myTimer) {
     const squares = bingoDb.collection(collectionName);
     await squares.updateMany({active:true}, {$set: {active: false}});
 
-    /** @type {Array<string>} */
     const mumbleSquaresRepository = (await squares.find().toArray());
-
-    /** @type {Array<string>} */
     const mumbleSquares = shuffle(mumbleSquaresRepository).slice(0, numSquares);
-
-    const reducer = (accumulator, square) => {accumulator.push(square.text); return accumulator};
-
-    const chosenSquares = mumbleSquares.reduce(reducer, []);
+    const chosenSquares = mumbleSquares.map(square => square.text);
 
     await squares.updateMany({text: {$in: chosenSquares}}, {$set: {active: true}});
 };
