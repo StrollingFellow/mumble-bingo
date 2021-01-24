@@ -1,9 +1,9 @@
 module.exports = async function (context, myTimer) {
 
-    const dbName = "BingoSquares";
-    const collectionName = "Squares";
-    const numSquares = 25;
+    const dbName = process.env.dbName;
+    const collectionName = process.env.collectionName;
     const connStr = process.env.cosmosDb;
+    const numSquares = 25;
     
     function shuffle(array) {
         var currentIndex = array.length, temporaryValue, randomIndex;

@@ -2,8 +2,8 @@ module.exports = async function (context, req) {
     const sass = require("sass");
     const pug = require("pug");
 
-    const dbName = "BingoSquares";
-    const collectionName = "Squares";
+    const dbName = process.env.dbName;
+    const collectionName = process.env.collectionName;
     const connStr = process.env.cosmosDb;
 
     const MongoClient = require("mongodb").MongoClient;
