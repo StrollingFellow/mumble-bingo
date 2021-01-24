@@ -9,7 +9,7 @@ module.exports = async function (context, req) {
     const MongoClient = require("mongodb").MongoClient;
     const bingoDb = await (await MongoClient.connect(connStr)).db(dbName);
     const squares = bingoDb.collection(collectionName);
-    const mumbleSquares = (await squares.find({active: true}).toArray()).map(square => square.text);
+    const mumbleSquares = (await squares.find({active: true}).toArray()).sort((a, b) => a.order - b.order ).map(square => square.text);
     
     const mumbleSass = sass.renderSync({file: `${__dirname}/views/style.scss` }).css;
 

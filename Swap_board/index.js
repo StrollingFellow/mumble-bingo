@@ -24,6 +24,7 @@ module.exports = async function (context, myTimer) {
         return array;
       }
 
+    const order = shuffle([...Array(numSquares).keys()]);
     const MongoClient = require("mongodb").MongoClient;
     const bingoDb = await (await MongoClient.connect(connStr)).db(dbName);
     const squares = bingoDb.collection(collectionName);
@@ -31,7 +32,8 @@ module.exports = async function (context, myTimer) {
 
     const mumbleSquaresRepository = (await squares.find().toArray());
     const mumbleSquares = shuffle(mumbleSquaresRepository).slice(0, numSquares);
-    const chosenSquares = mumbleSquares.map(square => square.text);
 
-    await squares.updateMany({text: {$in: chosenSquares}}, {$set: {active: true}});
+    for (let square of mumbleSquares) {
+      await squares.updateOne({text: square.text}, {$set: {active: true, order: order.pop()}});
+    }
 };
