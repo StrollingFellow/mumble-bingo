@@ -1,4 +1,11 @@
 {
   "$schema": "http://json.schemastore.org/proxies",
-  "proxies": {}
+  "proxies": {
+    "LetsEncryptProxy": {
+      "matchCondition": {
+        "route": "/"
+      },
+      "backendUri": "http://%WEBSITE_HOSTNAME%/api/serve_site"
+    }
+  }
 }
