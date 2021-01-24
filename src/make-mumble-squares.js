@@ -1,4 +1,6 @@
 const fs = require("fs");
+const { BlobServiceClient } = require('@azure/storage-blob');
+
 
 const numSquares = 25;
 
